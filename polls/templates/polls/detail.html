@@ -1,0 +1,10 @@
+{% if poll %}
+    <p><b>{{ poll.question }}</b></p>
+    {% for c in poll.choice_set.all %}
+        <li>{{ c.choice_text }} - votes: {{ c.votes }}</li>
+    {% endfor %}
+{% else %}
+    <p>Poll does not exist</p>
+{% endif %}
+
+<p><a href="/polls/">Index</a></p>
