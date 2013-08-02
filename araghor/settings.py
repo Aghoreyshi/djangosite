@@ -27,7 +27,7 @@ DATABASES = {
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -160,6 +160,7 @@ LOGGING = {
 
 # Parse database configuration from $DATABASE_URL
 DATABASES['default'] =  dj_database_url.config(default='postgres://aras6402:@localhost/araghor')
+#DATABASES['default'] =  dj_database_url.config(default='postgres://arash:@localhost/araghor')
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

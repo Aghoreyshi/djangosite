@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 
 from polls.models import Poll
@@ -11,9 +11,8 @@ def index(request):
 
 
 def detail(request, poll_id):
-    poll = Poll.objects.get(id=poll_id)
-    context = {'poll': poll}
-    return render(request, 'polls/detail.html', context)
+    poll = get_object_or_404(Poll, pk=poll_id)
+    return render(request, 'polls/detail.html', {'poll': poll})
 
 
 def vote(request, poll_id):
