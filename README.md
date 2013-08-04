@@ -1,1 +1,3 @@
-My Django website
+Me learning Django
+
+django.araghor.com
