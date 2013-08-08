@@ -116,7 +116,7 @@ ROOT_URLCONF = 'araghor.urls'
 WSGI_APPLICATION = 'araghor.wsgi.application'
 
 TEMPLATE_DIRS = (
-    os.path.abspath("") + "/templates",
+    os.path.join(PROJECT_DIR, 'templates')
 )
 
 INSTALLED_APPS = (
@@ -174,7 +174,7 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = ''
+STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
