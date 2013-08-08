@@ -1,16 +1,24 @@
-<h1>{{ poll.question }}</h1>
+{% extends 'polls/base.html' %}
+{% block title %}
+{{ poll.question }}
+{% endblock title %}
+{% block content %}
 
-
+<h1 class="text-primary" style="padding-left: 20px">{{ poll.question }}</h1>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
+<ul>
 <form action="{% url 'polls:vote' poll.id %}" method="post">
     {% csrf_token %}
     {% for choice in poll.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+        <div class="radio">
+          <label style="color: #33CC66" for="choice{{ forloop.counter }}">
+            {{ choice.choice_text }}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }} checked>
+          </label>
+        </div>
     {% endfor %}
-    <input type="submit" value="Vote" />
+    <button type="submit" value="Vote" class="btn btn-primary">Vote<a href="/polls/"></a></li></button>
 </form>
+</ul>
 
-<p><a href="/polls/">Index</a></p>
-<p><a href="/">Home</a></p>
+{% endblock content %}
