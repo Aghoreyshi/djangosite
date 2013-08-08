@@ -2,12 +2,13 @@
 import os
 import dj_database_url
 
+PROJECT_DIR = os.path.abspath("")
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    # ('Arash Ghoreyshi', 'arashghoreyshi@gmail.com'),
 )
 
 MANAGERS = ADMINS
@@ -76,6 +77,9 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    ('js', os.path.join(PROJECT_DIR, 'static', 'js')),
+    ('css', os.path.join(PROJECT_DIR, 'static', 'css')),
+    ('fonts', os.path.join(PROJECT_DIR, 'static', 'fonts')),
 )
 
 # List of finder classes that know how to find static files in
@@ -170,7 +174,7 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = ''
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
