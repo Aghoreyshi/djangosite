@@ -5,7 +5,7 @@
 {% block content %}
 
 <h1 class="text-primary" style="padding-left: 20px">{{ poll.question }}</h1>
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+{% if error_message %}<p style="padding-left: 30px; color: red"><strong>{{ error_message }}</strong></p></ul>{% endif %}
 <ul>
 <form action="{% url 'polls:vote' poll.id %}" method="post">
     {% csrf_token %}
@@ -13,11 +13,11 @@
         <div class="radio">
           <label style="color: #33CC66" for="choice{{ forloop.counter }}">
             {{ choice.choice_text }}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }} checked>
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }}>
           </label>
         </div>
     {% endfor %}
-    <button type="submit" value="Vote" class="btn btn-primary">Vote<a href="/polls/"></a></li></button>
+    <button type="submit" value="Vote" class="btn btn-primary">Vote</button>
 </form>
 </ul>
 

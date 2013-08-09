@@ -30,6 +30,21 @@ def vote(request, poll_id):
         return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
 
 
+def create(request):
+    if request.method == 'POST':
+        question = request.POST['question']
+        p = Poll(question=question)
+        p.save()
+        for c in ['choice1', 'choice2', 'choice3', 'choice4']:
+            choice_text = request.POST[c]
+            if choice_text:
+                p.choice_set.create(choice_text=choice_text)
+        p.save()
+        return HttpResponseRedirect('/polls/')
+    else:
+        return render(request, 'polls/create.html')
+
+
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
     return render(request, 'polls/results.html', {'poll': poll})

@@ -10,7 +10,6 @@ class ChoiceInline(admin.TabularInline):
 class PollAdmin(admin.ModelAdmin):
     fieldsets = [
         (None, {'fields': ['question']}),
-        ('Date Information', {'fields': ['pub_date']})
     ]
     inlines = [ChoiceInline]
     list_display = ['question', 'pub_date', 'published_recently']
