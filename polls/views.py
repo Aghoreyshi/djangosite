@@ -36,10 +36,13 @@ def create(request):
         p = Poll(question=question)
         p.save()
         for c in ['choice1', 'choice2', 'choice3', 'choice4']:
-            choice_text = request.POST[c]
-            if choice_text:
-                p.choice_set.create(choice_text=choice_text)
-        p.save()
+            try:
+                choice_text = request.POST[c]
+            except KeyError:
+                pass
+            else:
+                if choice_text:
+                    p.choice_set.create(choice_text=choice_text)
         return HttpResponseRedirect('/polls/')
     else:
         return render(request, 'polls/create.html')

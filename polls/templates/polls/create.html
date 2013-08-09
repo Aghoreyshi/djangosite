@@ -3,22 +3,24 @@
 Create a Poll
 {% endblock title %}
 {% block content %}
+{% if error_message %}<p style="padding-left: 30px; color: red"><strong>{{ error_message }}</strong></p></ul>{% endif %}
 <ul>
 <form action="{% url 'polls:create' %}" method="post">
   {% csrf_token %}
     <legend>Create a Poll</legend>
     <div class="form-group">
-      <label for="question">Question</label>
-      <input type="text" class="form-control" name="question" id="question" placeholder="Enter a question">
+      <label for="question" class=text-primary>Question</label>
+      <input type="text" class="form-control" name="question" id="question" placeholder="Enter a question" required>
     </div>
-    <strong><div class='text-primary'>
-    Enter up to 4 choices:
-    </div></strong>
     <p>
     {% for i in "xxxx" %}
       <div class="form-group">
         <label for="choice">Choice {{ forloop.counter }}</label>
-        <input type="text" class="form-control" name="choice{{ forloop.counter }}" id="choice{{ forloop.counter }}" placeholder="Enter a choice">
+        {% if forloop.first %}
+            <input type="text" class="form-control" name="choice{{ forloop.counter }}" id="choice{{ forloop.counter }}" placeholder="Enter a choice" required>
+        {% else %}
+            <input type="text" class="form-control" name="choice{{ forloop.counter }}" id="choice{{ forloop.counter }}" placeholder="Enter a choice">
+        {% endif %}
       </div>
     {% endfor %}
     </p>
