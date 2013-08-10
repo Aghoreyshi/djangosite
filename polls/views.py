@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 
 from polls.models import Poll, Choice
+from polls.forms import PollForm
 
 
 def index(request):
@@ -32,20 +33,19 @@ def vote(request, poll_id):
 
 def create(request):
     if request.method == 'POST':
-        question = request.POST['question']
-        p = Poll(question=question)
-        p.save()
-        for c in ['choice1', 'choice2', 'choice3', 'choice4']:
-            try:
-                choice_text = request.POST[c]
-            except KeyError:
-                pass
-            else:
-                if choice_text:
-                    p.choice_set.create(choice_text=choice_text)
-        return HttpResponseRedirect('/polls/')
+        form = PollForm(request.POST)
+        if form.is_valid():
+            poll = Poll(question=form.cleaned_data['question'])
+            poll.save()
+            for c in ['choice{0}'.format(i) for i in range(1, 6)]:
+                text = form.cleaned_data[c]
+                if text:
+                    poll.choice_set.create(choice_text=text)
+            return HttpResponseRedirect('/polls/')
     else:
-        return render(request, 'polls/create.html')
+        form = PollForm()  # an unbound form
+
+    return render(request, 'polls/create.html', {'form': form})
 
 
 def results(request, poll_id):
