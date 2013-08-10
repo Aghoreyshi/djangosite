@@ -4,6 +4,7 @@ Poll Index
 {% endblock title %}
 {% block content %}
 <ul>
+<legend>Latest Polls</legend>
 {% if latest_poll_list %}
     <ul class="list-unstyled" style="font-size:150%">
     {% for poll in latest_poll_list %}
@@ -14,7 +15,7 @@ Poll Index
     <p class="text-center">No polls are available.</p>
 {% endif %}
 <div>
-    <button type="button" class="btn btn-default"><a href="create">Create</a></button>
+    <button type="button" class="btn btn-default" style="margin-top: 10px"><a href="create">Create</a></button>
 <div>
 </ul>
 

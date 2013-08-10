@@ -5,13 +5,8 @@
 Create a Poll
 {% endblock title %}
 {% block content %}
-<legend>Create a Poll</legend>
-<div class="jumbotron">
-  <h1>Hello, world!</h1>
-  <p>vats app>
-  <p><a class="btn btn-primary btn-lg">Learn more</a></p>
-</div>
 <ul>
+<legend>Create a Poll</legend>
     <form action="{% url 'polls:create' %}" method="post">
     {% csrf_token %}
     {{ form|crispy }}
