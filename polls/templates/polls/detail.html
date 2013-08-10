@@ -9,7 +9,7 @@
 <ul>
 <form action="{% url 'polls:vote' poll.id %}" method="post">
     {% csrf_token %}
-    {% for choice in choice_list %}
+    {% for choice in poll.choice_set.all %}
         <div class="radio">
           <label style="color: #33CC66" for="choice{{ forloop.counter }}">
             {{ choice.choice_text }}
