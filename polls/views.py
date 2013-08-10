@@ -37,8 +37,11 @@ def create(request):
         if form.is_valid():
             poll = Poll(question=form.cleaned_data['question'])
             poll.save()
-            for c in ['choice{0}'.format(i) for i in range(1, 6)]:
-                text = form.cleaned_data[c]
+            for c in ['choice{0}'.format(i) for i in range(1, 5)]:
+                try:
+                    text = form.cleaned_data[c]
+                except KeyError:
+                    break
                 if text:
                     poll.choice_set.create(choice_text=text)
             return HttpResponseRedirect('/polls/')
