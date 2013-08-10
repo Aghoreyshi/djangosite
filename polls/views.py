@@ -14,17 +14,24 @@ def index(request):
 
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    return render(request, 'polls/detail.html', {'poll': poll})
+    return render(request, 'polls/detail.html', {
+        'poll': poll,
+        'choice_list': poll.choice_set.order_by('pk')
+    })
 
 
 def vote(request, poll_id):
     p = get_object_or_404(Poll, pk=poll_id)
+    choice_list = p.choice_set.order_by('pk')
     try:
         chosen_choice = p.choice_set.get(pk=request.POST['choice'])
     except (KeyError, Choice.DoesNotExist):
         # Redisplay poll voting form
-        return render(request, 'polls/detail.html', {'poll': p, "error_message":
-                                                     "You didn't select a choice."})
+        return render(request, 'polls/detail.html', {
+            'poll': p,
+            'choice_list': choice_list,
+            "error_message": "You didn't select a choice."
+        })
     else:
         chosen_choice.votes += 1
         chosen_choice.save()
@@ -53,4 +60,7 @@ def create(request):
 
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    return render(request, 'polls/results.html', {'poll': poll})
+    return render(request, 'polls/results.html', {
+    'poll': poll,
+    'choice_list': poll.choice_set.order_by('pk')
+})
