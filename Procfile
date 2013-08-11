@@ -1,1 +1,1 @@
-web: gunicorn araghor.wsgi
+web: newrelic-admin run-program gunicorn araghor.wsgi
