@@ -3,21 +3,19 @@
 Poll Index
 {% endblock title %}
 {% block content %}
-<ul>
-<legend>Latest Polls</legend>
-{% if latest_poll_list %}
-    <ul class="list-unstyled" style="font-size:150%">
-    {% for poll in latest_poll_list %}
-        <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatewords:10 }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p class="text-center">No polls are available.</p>
-{% endif %}
-<div>
-    <button type="button" class="btn btn-default" style="margin-top: 10px"><a href="create">Create</a></button>
-<div>
-</ul>
+<div class="container">
+  <legend>Latest Polls</legend>
+  {% if latest_poll_list %}
+      <ul class="list-unstyled" style="font-size:150%">
+      {% for poll in latest_poll_list %}
+          <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatewords:10 }}</a></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+      No polls are available.
+  {% endif %}
+  <button type="button" class="btn btn-default" style="margin-top: 10px"><a href="create">Create</a></button>
+</div>
 
 
 {% endblock content %}
