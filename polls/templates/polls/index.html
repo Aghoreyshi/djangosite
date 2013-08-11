@@ -5,19 +5,40 @@ Poll Index
 {% block content %}
 <div class="container">
   <legend>Latest Polls</legend>
-  {% if latest_poll_list %}
+  {% if polls %}
       <ul class="list-unstyled" style="font-size:150%">
-      {% for poll in latest_poll_list %}
+      {% for poll in polls %}
           <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatewords:10 }}</a></li>
       {% endfor %}
       </ul>
   {% else %}
       No polls are available.
   {% endif %}
-  <button type="button" class="btn btn-default" style="margin-top: 10px"><a href="create">Create</a></button>
 </div>
-
-
+<div class="container">
+<span class="pagination">
+{% if polls.has_previous %}
+    <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+{% else %}
+    <li class="disabled"><a href="">&laquo;</a></li>
+{% endif %}
+{% for n in page_list %}
+  {% if n == polls.number %}
+      <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+  {% else %}
+      <li><a href="?page={{ n }}">{{ n }}</a></li>
+  {% endif %}
+{% endfor %}
+{% if polls.has_next %}
+    <li><a href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+{% else %}
+    <li class="disabled"><a href="">&raquo;</a></li>
+{% endif %}
+</span>
+</div>
+<div class="container">
+<button type="button" class="btn btn-default btn-lg" style="margin-top: 10px"><a href="create">Create a Poll</a></button>
+</div>
 {% endblock content %}
 {% block footer %}
 {% endblock footer %}
