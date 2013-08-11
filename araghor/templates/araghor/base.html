@@ -29,10 +29,17 @@
       {% endblock navtabs %}
       </ul>
     </div>
-  {% block content %}
-  my content
-  {% endblock content %}
-  {% block footer %}
-  {% endblock footer %}
+    {% block padding %}
+    <style media="screen" type="text/css">
+      .container {
+        padding-left: 10px;
+      }
+    </style>
+    {% endblock padding %}
+    {% block content %}
+    my content
+    {% endblock content %}
+    {% block footer %}
+    {% endblock footer %}
   </body>
 </html>
