@@ -8,5 +8,4 @@ urlpatterns = patterns('',
                        url(r'(?P<poll_id>\d+)/vote/$', views.vote, name='vote'),
                        url(r'create/$', views.create, name='create'),
                        url(r'(?P<poll_id>\d+)/results/$', views.results, name='results'),
-                       url(r'^', include('favicon.urls')),
                        )
