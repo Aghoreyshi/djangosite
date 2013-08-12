@@ -129,6 +129,7 @@ INSTALLED_APPS = (
     #'django.contrib.admindocs',
     'polls',
     'crispy_forms',
+    'favicon',
 )
 
 # A sample logging configuration. The only tangible logging
