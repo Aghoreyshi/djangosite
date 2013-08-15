@@ -25,7 +25,7 @@ def index(request):
     if polls.number <= num_page_links:
         page_list = total_page_list[:num_page_links]
     else:
-        page_list = total_page_list[(polls.number - num_page_links / 2):(polls.number + num_page_links / 2)]
+        page_list = total_page_list[(polls.number - num_page_links / 2 - num_page_links % 2):(polls.number + num_page_links / 2)]
 
     context = {'polls': polls,
                'page_list': page_list,

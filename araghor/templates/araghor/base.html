@@ -37,18 +37,20 @@
       }
     </style>
     {% endblock padding %}
+    {% block center %}
     <div class="text-center">
+    {% endblock center %}
     {% block content %}
     my content
     {% endblock content %}
     </div>
   </body>
   <footer>
-  <div class='container text-center'>
-      {% block footer %}
+    {% block footer %}
+    <div class='container text-center'>
       <a href="http://github.com/Aghoreyshi" class="icon-github-alt icon-2x" style='padding-right: 10px'></a>
       <a href="mailto:arashghoreyshi@gmail.com" class="icon-envelope-alt icon-2x"></a>
-      {% endblock footer %}
-  </div>
+    </div>
+    {% endblock footer %}
   </footer>
 </html>

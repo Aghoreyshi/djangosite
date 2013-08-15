@@ -12,7 +12,7 @@
   <ul class='list-unstyled'>
     {% for choice in poll.choice_set.all %}
       <li style="font-size:120%">
-          <span style="color: #33CC66">{{ choice.choice_text }}</span> -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
+          {{ choice.choice_text }}</span> -- {{ choice.votes }} vote{{ choice.votes|pluralize }}
       </li>
     {% endfor %}
   </ul>

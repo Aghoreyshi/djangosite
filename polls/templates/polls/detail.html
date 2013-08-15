@@ -2,6 +2,9 @@
 {% block title %}
 {{ poll.question }}
 {% endblock title %}
+{% block center %}
+{% endblock center %}
+
 {% block content %}
 
 <div class="container">
@@ -11,14 +14,20 @@
     {% csrf_token %}
     {% for choice in poll.choice_set.all %}
         <div class="radio">
-          <label style="color: #33CC66; font-size: 120%" for="choice{{ forloop.counter }}">
+          <label style="font-size: 120%" for="choice{{ forloop.counter }}">
             {{ choice.choice_text }}
             <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }}>
           </label>
         </div>
     {% endfor %}
-    <button type="submit" value="Vote" class="btn btn-primary">Vote</button>
+    <button type="submit" value="Vote" class="btn btn-success">Vote</button>
 </form>
 </div>
 
 {% endblock content %}
+
+{% block footer %}
+<div class="container">
+    <p style='margin-top: 20px'><a href="/polls/">Poll Index</a></p>
+</div>
+{% endblock footer %}
