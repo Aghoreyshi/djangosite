@@ -44,3 +44,6 @@ class PollForm(forms.Form):
             Submit('save_changes', 'Create', css_class="btn-primary btn-lg", style="margin-top: 10px"),
         )
    )
+
+class SearchForm(forms.Form):
+    query = forms.CharField(max_length=100)

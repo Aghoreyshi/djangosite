@@ -2,9 +2,28 @@
 {% block title %}
 Poll Index
 {% endblock title %}
+
+{% block navaddons %}
+
+<form name="search" class="navbar-form navbar-left" role="search">
+    <div class="form-group">
+    {% if query %}
+        <input name="query" type="text" class="form-control" placeholder={{ query }}>
+    {% else %}
+        <input name="query" type="text" class="form-control" placeholder="Search Polls">
+    {% endif %}
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endblock navaddons %}
+
 {% block content %}
 <div class="container">
-  <legend>Latest Polls</legend>
+  {% if query %}
+    <legend>Polls matching "{{ query }}"</legend>
+  {% else %}
+    <legend>Latest Polls</legend>
+  {% endif %}
   {% if polls %}
       <ul class="list-unstyled" style="font-size:150%">
       {% for poll in polls %}
@@ -12,10 +31,14 @@ Poll Index
       {% endfor %}
       </ul>
   {% else %}
-      No polls are available.
+      <ul class="list-unstyled text-danger" style="font-size:150%">
+      {% if query %}
+        No polls matched your criteria.
+      {% else %}
+        No polls are available.
+      {% endif %}
+      </ul>
   {% endif %}
-</div>
-<div class="container">
 <span class="pagination">
 {% if polls.has_previous %}
     <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
@@ -35,9 +58,9 @@ Poll Index
     <li class="disabled"><a href="">&raquo;</a></li>
 {% endif %}
 </span>
-</div>
+
 <div class="container">
-<button type="button" class="btn btn-primary btn-large" style="margin-top: 10px"><a href="create">Create a Poll</a></button>
+<button type="button" class="btn btn-primary btn-lg" style="margin-top: 25px"><a href="create">Create a Poll</a></button>
 </div>
 {% endblock content %}
 {% block footer %}
