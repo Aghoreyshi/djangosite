@@ -16,7 +16,7 @@ def index(request):
         query = request.GET.get('query', '')
 
     if query:
-        poll_list = Poll.objects.all().filter(question__contains=query).order_by('-pub_date')
+        poll_list = Poll.objects.all().filter(question__icontains=query).order_by('-pub_date')
     else:
         poll_list = Poll.objects.all().order_by('-pub_date')
     page = request.GET.get('page')
