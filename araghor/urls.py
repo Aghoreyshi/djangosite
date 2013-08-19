@@ -8,7 +8,7 @@ urlpatterns = patterns('',
     # Examples:
     # url(r'^araghor/', include('araghor.foo.urls')),
     url(r'^$', 'araghor.views.home', name='home'),
-    url(r'^grey$', 'araghor.views.greyhome', name='greyhome'),
+    url(r'grey$', 'araghor.views.greyhome', name='greyhome'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
