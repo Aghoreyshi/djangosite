@@ -3,11 +3,13 @@
   <head>
     <meta charset="utf-8" />
 
-    <title>{% block title %}Araghor{% endblock title %}</title>
+    <title>{% block title %}Greyash{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <!-- Bootstrap -->
+    {% block cssfile %}
     <link href="/static/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
+    {% endblock cssfile %}
     <link href="/static/css/bootstrap-glyphicons.css" media="screen" rel="stylesheet" type="text/css" />
 
     <meta name="msapplication-TileColor" content="#004d18"/>
@@ -28,10 +30,11 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Araghor</a>
+        <a class="navbar-brand" href="grey">Grey</a>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <p class="navbar-text pull-right"><a href="{% url 'greyhome' %}">Ash</a></p>
         <ul class="nav navbar-nav">
         {% block navtabs %}
         <li class="active"><a href="/">Home</a></li>
@@ -62,7 +65,7 @@
     {% block footer %}
     <div class='container text-center'>
       <a href="http://github.com/Aghoreyshi" class="icon-github-alt icon-2x" style='padding-right: 10px'></a>
-      <a href="mailto:arashghoreyshi@gmail.com" class="icon-envelope-alt icon-2x"></a>
+      <a href="mailto:arashgrey@gmail.com" class="icon-envelope-alt icon-2x"></a>
       <a href="https://copy.com?r=P8E3yj" class="icon-cloud icon-2x" style='padding-left: 10px'></a>
       <a href="http://db.tt/vmV4kCwg" class="icon-dropbox icon-2x" style='padding-left: 10px'></a>
     </div>
