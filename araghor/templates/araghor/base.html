@@ -20,28 +20,19 @@
     <script src="/static/js/respond.min.js"></script>
   </head>
   <body>
-    <nav class="navbar" role="navigation">
-      <!-- Brand and toggle get grouped for better mobile display -->
+    <nav class="navbar navbar-static-top" role="navigation">
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
         <a class="navbar-brand" href="/">Araghor</a>
       </div>
-      <div class="collapse navbar-collapse navbar-ex1-collapse">
-        <ul class="nav navbar-nav">
-        {% block navtabs %}
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/polls/">Polls</a></li>
-        {% endblock navtabs %}
-        <li><a href="http://burgerbox.biz">Burgers</a></li>
-        </ul>
-        {% block navaddons %}
-        {% endblock navaddons %}
-      </div>
+      <ul class="nav navbar-nav">
+      {% block navtabs %}
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="/polls/">Polls</a></li>
+      {% endblock navtabs %}
+      <li><a href="http://burgerbox.biz">Burgers</a></li>
+      </ul>
+      {% block navaddons %}
+      {% endblock navaddons %}
     </nav>
     {% block padding %}
     <style media="screen" type="text/css">
