@@ -20,18 +20,29 @@
     <script src="/static/js/respond.min.js"></script>
   </head>
   <body>
-    <div class="navbar navbar-static-top" style="padding-left: 15px" role="navigation">
-      <a class="navbar-brand" style="padding-right: 15px" href="/">Araghor</a>
-      <ul class="nav navbar-nav">
-      {% block navtabs %}
-      <li class="active"><a href="/">Home</a></li>
-      <li><a href="/polls/">Polls</a></li>
-      {% endblock navtabs %}
-      <li><a href="http://burgerbox.biz">Burgers</a></li>
-      </ul>
-      {% block navaddons %}
-      {% endblock navaddons %}
-    </div>
+    <nav class="navbar" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Araghor</a>
+      </div>
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav">
+        {% block navtabs %}
+        <li class="active"><a href="/">Home</a></li>
+        <li><a href="/polls/">Polls</a></li>
+        {% endblock navtabs %}
+        <li><a href="http://burgerbox.biz">Burgers</a></li>
+        </ul>
+        {% block navaddons %}
+        {% endblock navaddons %}
+      </div>
+    </nav>
     {% block padding %}
     <style media="screen" type="text/css">
       .container {
