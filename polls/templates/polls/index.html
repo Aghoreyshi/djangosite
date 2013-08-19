@@ -26,7 +26,7 @@ Poll Index
   {% if polls %}
       <ul class="list-unstyled" style="font-size:150%">
       {% for poll in polls %}
-          <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatewords:10 }}</a></li>
+          <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatechars:50 }}</a></li>
       {% endfor %}
       </ul>
   {% else %}
