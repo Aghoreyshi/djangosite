@@ -50,7 +50,9 @@ def vote(request, poll_id):
     else:
         chosen_choice.votes += 1
         chosen_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+        response = HttpResponseRedirect(reverse('polls:results', args=(p.id,)))
+        request.session['voted'] = True
+        return response
 
 
 def create(request):
@@ -75,6 +77,9 @@ def create(request):
 
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
+    voted = request.session.get('voted')
+    request.session['voted'] = False
     return render(request, 'polls/results.html', {
     'poll': poll,
+    'voted': voted,
 })

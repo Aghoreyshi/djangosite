@@ -9,7 +9,9 @@
 
 <div class="container">
 <h1 class="text-primary">{{ poll.question }}</h1>
-{% if error_message %}<p style="padding-left: 30px; color: red"><strong>{{ error_message }}</strong></p></ul>{% endif %}
+{% if error_message %}
+    <p style="color: red"><strong>{{ error_message }}</strong></p>
+{% endif %}
 <form action="{% url 'polls:vote' poll.id %}" method="post">
     {% csrf_token %}
     {% for choice in poll.choice_set.all %}
@@ -28,6 +30,7 @@
 
 {% block footer %}
 <div class="container">
+    <p style='margin-top: 20px'><a href="{% url 'polls:results' poll.id %}">View Results</a></p>
     <p style='margin-top: 20px'><a href="/polls/">Poll Index</a></p>
 </div>
 {% endblock footer %}

@@ -1,7 +1,3 @@
-#Greyash
+#Greyshi
 
-Me learning Django while building a [website](http://www.greyash.com)
-
-I'm deploying using Heroku (it's free and awesome), and I'm using the following addons:
-* newrelic
-* papertrail
+I'm learning Django while building this [website](http://www.greyshi.com) for myself.

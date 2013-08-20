@@ -116,6 +116,8 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates')
 )
 
+SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',

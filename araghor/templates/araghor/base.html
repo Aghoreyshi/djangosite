@@ -5,12 +5,13 @@
 
     <title>{% block title %}Greyshi{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
     <!-- Bootstrap -->
     {% block cssfile %}
     <link href="/static/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css" />
     {% endblock cssfile %}
     <link href="/static/css/bootstrap-glyphicons.css" media="screen" rel="stylesheet" type="text/css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 
     <meta name="msapplication-TileColor" content="#004d18"/>
     <meta name="msapplication-TileImage" content="apple-touch-icon-144x144.png"/>
@@ -20,7 +21,19 @@
 
     <!-- Enable responsive features in IE8 with Respond.js (https://github.com/scottjehl/Respond) -->
     <script src="/static/js/respond.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-43306119-1', 'greyshi.com');
+      ga('send', 'pageview');
+    </script>
   </head>
+
   <body>
     <nav class="navbar navbar-static-top" style="width: 100%" role="navigation">
       <div class="navbar-header">
@@ -61,6 +74,7 @@
     {% endblock content %}
     </div>
   </body>
+
   <footer>
     {% block footer %}
     <div class='container text-center'>

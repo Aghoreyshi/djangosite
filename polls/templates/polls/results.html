@@ -3,10 +3,12 @@
 {{ poll.question }} - Result
 {% endblock title %}
 {% block content %}
-<div class="container alert alert-success">
-  <button type="button" class="close" data-dismiss="alert">×</button>
-  <strong>Success!</strong> You voted.
-</div>
+{% if voted %}
+  <div class="container alert alert-success">
+    <button type="button" class="close" data-dismiss="alert">×</button>
+    <strong>Success!</strong> You voted.
+  </div>
+{% endif %}
 <div class="container">
   <h1 class="text-primary"><a href="{% url 'polls:detail' poll.id %}">{{ poll.question }}</a></h1>
   <ul class='list-unstyled'>
