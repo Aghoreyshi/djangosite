@@ -1,0 +1,12 @@
+{% extends "blog/base.html" %}
+{% block title %}
+{{ entry.title }}
+{% endblock title %}
+{% block content %}
+<h1 class='text-primary'>{{ entry.title }}</h1>
+<p>{{ entry.body }}</p>
+<button type="button" class="btn btn-primary btn-lg" style='margin-top: 25px'>
+    <a href="{% url 'blog:main' %}">Blog Home</a></button>
+
+{% endblock content %}
+

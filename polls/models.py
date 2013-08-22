@@ -2,7 +2,6 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
-from django.forms import ModelForm
 
 
 class Poll(models.Model):

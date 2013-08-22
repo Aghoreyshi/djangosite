@@ -1,3 +1,3 @@
-#Greyshi
+###Greyshi
 
-I'm learning Django while building this [website](http://www.greyshi.com) for myself.
+I'm taking a stab at web development while building this [website](http://www.greyshi.com) for myself.
