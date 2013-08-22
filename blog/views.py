@@ -7,7 +7,7 @@ def main(request):
     return render(request, 'blog/main.html', {'entry_list': entry_list})
 
 
-def detail(request, entry_id):
+def detail(request, entry_id, **kwargs):
     entry = get_object_or_404(Entry, id=entry_id)
     return render(request, 'blog/detail.html', {'entry': entry})
 

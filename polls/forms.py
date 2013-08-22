@@ -7,7 +7,7 @@ from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
 class PollForm(forms.Form):
     question = forms.CharField(
         label='Question',
-        max_length=100
+        max_length=200
     )
 
     choice1 = forms.CharField(
