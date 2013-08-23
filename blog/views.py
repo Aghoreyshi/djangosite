@@ -4,7 +4,7 @@ from models import Entry, Category
 from utils import paginate
 
 def main(request):
-    entries_per_page = 1
+    entries_per_page = 3
     num_page_links = 4
 
     query = ""

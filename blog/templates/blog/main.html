@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load blog_markup %}
 {% block title %}
 Arash's Blog
 {% endblock title %}
@@ -23,12 +24,10 @@ Arash's Blog
   {% endif %}
   {% if entries %}
     {% for entry in entries %}
-      <h4 class='text-primary'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h4>
+      <h3 class='text-primary' style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">
+        {{ entry.title }}</a></h3>
       <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
-      <p>{{ entry.body }}</p>
-      {% if not forloop.last %}
-        <legend></legend>
-      {% endif %}
+      <p>{{ entry.body|markdown }}</p>
     {% endfor %}
   {% else %}
     {% if query %}

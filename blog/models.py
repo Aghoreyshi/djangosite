@@ -5,15 +5,19 @@ from django.utils import timezone
 
 
 class Category(models.Model):
-    title = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=50)
+    title = models.CharField(max_length=100, db_index=True)
+    slug = models.SlugField(max_length=50, db_index=True)
 
     def __unicode__(self):
         return self.title
 
+    class Meta:
+        ordering = ['title']
+        verbose_name_plural = "Categories"
+
 
 class Entry(models.Model):
-    title = models.CharField(max_length=255, unique=True)
+    title = models.CharField(max_length=255)
     slug = models.SlugField(max_length=50, unique=True)
     body = models.TextField()
     pub_date = models.DateTimeField('date published', auto_now_add=True,)
@@ -31,4 +35,5 @@ class Entry(models.Model):
 
     class Meta:
         ordering = ['pub_date']
+        verbose_name_plural = "Entries"
 
