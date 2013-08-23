@@ -52,14 +52,14 @@
       <div class="collapse navbar-collapse navbar-ex1-collapse">
         <p class="navbar-text pull-right"><a class="text-muted" href="/grey">ash</a></p>
         <ul class="nav navbar-nav">
-        {% block navtabs %}
-        <li class="active"><a href="/">Home</a></li>
-        <li><a href="/blog/">Blog</a></li>
-        <li><a href="/polls/">Polls</a></li>
-        {% endblock navtabs %}
-        <li><a href="http://burgerbox.biz">Burgers</a></li>
-        {% block navaddons %}
-        {% endblock navaddons %}
+          {% block navtabs %}
+          <li class="active"><a href="/">Home</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/polls/">Polls</a></li>
+          {% endblock navtabs %}
+          <li><a href="http://burgerbox.biz">Burgers</a></li>
+          {% block navaddons %}
+          {% endblock navaddons %}
         </ul>
       </div>
     </nav>
@@ -73,9 +73,9 @@
     {% block center %}
     <div class="text-center">
     {% endblock center %}
-    {% block content %}
-    my content
-    {% endblock content %}
+      {% block content %}
+      my content
+      {% endblock content %}
     </div>
   </body>
 

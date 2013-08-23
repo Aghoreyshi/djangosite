@@ -5,14 +5,14 @@ Poll Index
 
 {% block navaddons %}
 <form name="search" class="navbar-form navbar-left" role="search">
-    <div class="form-group">
+  <div class="form-group">
     {% if query %}
-        <input name="query" type="text" class="form-control" placeholder={{ query }}>
+      <input name="query" type="text" class="form-control" placeholder={{ query }}>
     {% else %}
-        <input name="query" type="text" class="form-control" placeholder="Search Polls">
+      <input name="query" type="text" class="form-control" placeholder="Search Polls">
     {% endif %}
-    </div>
-    <button type="submit" class="btn btn-default">Submit</button>
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
 </form>
 {% endblock navaddons %}
 
@@ -24,42 +24,42 @@ Poll Index
     <legend>Latest Polls</legend>
   {% endif %}
   {% if polls %}
-      <ul class="list-unstyled" style="font-size:150%">
+    <ul class="list-unstyled" style="font-size:150%">
       {% for poll in polls %}
-          <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatechars:60 }}</a></li>
+      <li><a href="{% url 'polls:detail' poll.id %}">{{ poll.question|truncatechars:60 }}</a></li>
       {% endfor %}
-      </ul>
+    </ul>
   {% else %}
-      <ul class="list-unstyled text-danger" style="font-size:150%">
+    <ul class="list-unstyled text-danger" style="font-size:150%">
       {% if query %}
         No polls matched your criteria.
       {% else %}
         No polls are available.
       {% endif %}
-      </ul>
+    </ul>
   {% endif %}
-<span class="pagination">
-{% if polls.has_previous %}
-    <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
-{% else %}
-    <li class="disabled"><a href="">&laquo;</a></li>
-{% endif %}
-{% for n in page_list %}
-  {% if n == polls.number %}
-      <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
-  {% else %}
-      <li><a href="?page={{ n }}">{{ n }}</a></li>
-  {% endif %}
-{% endfor %}
-{% if polls.has_next %}
-    <li><a href="?page={{ polls.next_page_number }}">&raquo;</a></li>
-{% else %}
-    <li class="disabled"><a href="">&raquo;</a></li>
-{% endif %}
-</span>
-
+  <span class="pagination">
+    {% if polls.has_previous %}
+      <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><a href="">&laquo;</a></li>
+    {% endif %}
+    {% for n in page_list %}
+      {% if n == polls.number %}
+        <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+      {% else %}
+        <li><a href="?page={{ n }}">{{ n }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if polls.has_next %}
+      <li><a href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><a href="">&raquo;</a></li>
+    {% endif %}
+  </span>
+</div>
 <div class="container">
-<button type="button" class="btn btn-primary btn-lg" style="margin-top: 25px"><a href="create">Create a Poll</a></button>
+  <button type="button" class="btn btn-primary btn-lg" style="margin-top: 25px"><a href="create">Create a Poll</a></button>
 </div>
 {% endblock content %}
 {% block footer %}

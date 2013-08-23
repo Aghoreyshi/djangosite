@@ -3,34 +3,35 @@
 {{ poll.question }}
 {% endblock title %}
 {% block center %}
+<div>
 {% endblock center %}
 
 {% block content %}
 
 <div class="container">
-<h1 class="text-primary">{{ poll.question }}</h1>
-{% if error_message %}
+  <h1 class="text-primary">{{ poll.question }}</h1>
+  {% if error_message %}
     <p style="color: red"><strong>{{ error_message }}</strong></p>
-{% endif %}
-<form action="{% url 'polls:vote' poll.id %}" method="post">
+  {% endif %}
+  <form action="{% url 'polls:vote' poll.id %}" method="post">
     {% csrf_token %}
     {% for choice in poll.choice_set.all %}
-        <div class="radio">
-          <label style="font-size: 120%" for="choice{{ forloop.counter }}">
-            {{ choice.choice_text }}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }}>
-          </label>
-        </div>
+      <div class="radio">
+        <label style="font-size: 120%" for="choice{{ forloop.counter }}">
+          {{ choice.choice_text }}
+          <input type="radio" name="choice" id="choice{{ forloop.counter }}" value={{ choice.id }}>
+        </label>
+      </div>
     {% endfor %}
     <button type="submit" value="Vote" class="btn btn-success">Vote</button>
-</form>
+  </form>
 </div>
 
 {% endblock content %}
 
 {% block footer %}
 <div class="container">
-    <p style='margin-top: 20px'><a href="{% url 'polls:results' poll.id %}">View Results</a></p>
-    <p style='margin-top: 20px'><a href="/polls/">Poll Index</a></p>
+  <p style='margin-top: 20px'><a href="{% url 'polls:results' poll.id %}">View Results</a></p>
+  <p style='margin-top: 20px'><a href="/polls/">Poll Index</a></p>
 </div>
 {% endblock footer %}

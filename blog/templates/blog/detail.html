@@ -4,14 +4,14 @@
 {% endblock title %}
 {% block content %}
 <div class="container">
-<h1 class='text-primary'>{{ entry.title }}</h1>
-<p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
-<p>{{ entry.body }}</p>
-{% if entry.pub_date.ctime != entry.modified_date.ctime %}
+  <h1 class="text-primary">{{ entry.title }}</h1>
+  <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
+  <p>{{ entry.body }}</p>
+  {% if entry.pub_date.ctime != entry.modified_date.ctime %}
     <p><em><small class="text-info">Updated on {{ entry.modified_date }}</small></em></p>
-{% endif %}
-<button type="button" class="btn btn-primary btn-lg" style='margin-top: 25px'>
-    <a href="{% url 'blog:main' %}">Blog Home</a></button>
+  {% endif %}
+  <button type="button" class="btn btn-primary btn-lg" style='margin-top: 25px'>
+      <a href="{% url 'blog:main' %}">Blog Home</a></button>
 </div>
 {% endblock content %}
 
