@@ -21,8 +21,8 @@ Arash's Blog
   {% else %}
     <h1>Arash's Blog</h1>
   {% endif %}
-  {% if entry_list %}
-    {% for entry in entry_list %}
+  {% if entries %}
+    {% for entry in entries %}
       <h4 class='text-primary'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h4>
       <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
       <p>{{ entry.body }}</p>
@@ -34,8 +34,32 @@ Arash's Blog
     {% if query %}
       <h3 class="text-danger">No blog entries matched your criteria.</h3>
     {% else %}
-      <h3 class="text-danger">Arash hasn't written any polls yet... some blog.</h3>
+      <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
     {% endif %}
   {% endif %}
+  <span class="pagination">
+    {% if entries.has_previous %}
+      <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><a href="">&laquo;</a></li>
+    {% endif %}
+    {% for n in page_list %}
+      {% if n == entries.number %}
+        <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+      {% else %}
+        <li><a href="?page={{ n }}">{{ n }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if entries.has_next %}
+      <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><a href="">&raquo;</a></li>
+    {% endif %}
+  </span>
 </div>
 {% endblock content %}
+{% block footer %}
+<div class='container text-center' style='margin-bottom: 25px'>
+  <a href="mailto:agreyshi@gmail.com" class="icon-envelope-alt icon-2x"></a>
+</div>
+{% endblock footer %}

@@ -10,17 +10,16 @@ from polls.utils import paginate
 def index(request):
     polls_per_page = 5
     num_page_links = 5
-    query = ""
 
+    query = ""
     if request.method == 'GET':
         query = request.GET.get('query', '')
-
     if query:
         poll_list = Poll.objects.all().filter(question__icontains=query).order_by('-pub_date')
     else:
         poll_list = Poll.objects.all().order_by('-pub_date')
-    page = request.GET.get('page')
 
+    page = request.GET.get('page')
     polls, page_list = paginate(poll_list, page, polls_per_page, num_page_links)
 
     context = {'polls': polls,
