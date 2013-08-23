@@ -27,7 +27,9 @@ Arash's Blog
       <h3 class='text-primary' style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">
         {{ entry.title }}</a></h3>
       <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
-      <p>{{ entry.body|markdown }}</p>
+      {% if not query %}
+        <p>{{ entry.body|markdown }}</p>
+      {% endif %}
     {% endfor %}
   {% else %}
     {% if query %}
