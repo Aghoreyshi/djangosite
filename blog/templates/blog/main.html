@@ -8,6 +8,7 @@ Arash's Blog
 {% if entry_list %}
     {% for entry in entry_list %}
        <h4 class='text-primary'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h4>
+       <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
        <p>{{ entry.body }}</p>
        {% if not forloop.last %}
        <legend></legend>
