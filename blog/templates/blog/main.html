@@ -2,9 +2,25 @@
 {% block title %}
 Arash's Blog
 {% endblock title %}
+{% block navaddons %}
+<form name="search" class="navbar-form navbar-left" role="search">
+  <div class="form-group">
+    {% if query %}
+      <input name="query" type="text" class="form-control" placeholder={{ query }}>
+    {% else %}
+      <input name="query" type="text" class="form-control" placeholder="Search Blog">
+    {% endif %}
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+{% endblock navaddons %}
 {% block content %}
 <div class="container">
-  <h1>Arash's Blog</h1>
+  {% if query %}
+    <h3>Arash's Blog - Entries matching "{{ query }}"</h1>
+  {% else %}
+    <h1>Arash's Blog</h1>
+  {% endif %}
   {% if entry_list %}
     {% for entry in entry_list %}
       <h4 class='text-primary'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h4>
@@ -15,7 +31,11 @@ Arash's Blog
       {% endif %}
     {% endfor %}
   {% else %}
-    <h3 class="text-danger">Arash hasn't written any polls yet... some blog.</h3>
+    {% if query %}
+      <h3 class="text-danger">No blog entries matched your criteria.</h3>
+    {% else %}
+      <h3 class="text-danger">Arash hasn't written any polls yet... some blog.</h3>
+    {% endif %}
   {% endif %}
 </div>
 {% endblock content %}
