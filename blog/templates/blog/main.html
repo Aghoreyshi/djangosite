@@ -16,51 +16,57 @@ Arash's Blog
 </form>
 {% endblock navaddons %}
 {% block content %}
-<div class="container">
-  {% if query %}
-    <h3>Arash's Blog - Entries matching "{{ query }}"</h1>
-  {% else %}
-    <h1>Arash's Blog</h1>
-  {% endif %}
-  {% if entries %}
-    {% for entry in entries %}
-      <h3 class='text-primary' style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">
-        {{ entry.title }}</a></h3>
-      <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
-      {% if not query %}
-        <p>{{ entry.body|markdown }}</p>
-      {% endif %}
-    {% endfor %}
-  {% else %}
+<div class="row container">
+  <div class="col-md-11">
     {% if query %}
-      <h3 class="text-danger">No blog entries matched your criteria.</h3>
+      <h3>Entries matching <span class="text-info">"{{ query }}"</span></h1>
+    {% elif category %}
+      <h3>Category: <span class='text-info'>{{ category }}</span></h1>
     {% else %}
-      <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
     {% endif %}
-  {% endif %}
-  <span class="pagination">
-    {% if entries.has_previous %}
-      <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+    {% if entries %}
+      {% for entry in entries %}
+        <h3 class='text-primary' style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">
+          {{ entry.title }}</a></h3>
+        <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
+        {% if not query and not category %}
+          <p>{{ entry.body|markdown }}</p>
+        {% endif %}
+      {% endfor %}
     {% else %}
-      <li class="disabled"><a href="">&laquo;</a></li>
-    {% endif %}
-    {% for n in page_list %}
-      {% if n == entries.number %}
-        <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+      {% if query %}
+        <h3 class="text-danger">No blog entries matched your criteria.</h3>
       {% else %}
-        <li><a href="?page={{ n }}">{{ n }}</a></li>
+        <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
       {% endif %}
-    {% endfor %}
-    {% if entries.has_next %}
-      <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
-    {% else %}
-      <li class="disabled"><a href="">&raquo;</a></li>
     {% endif %}
-  </span>
+    <span class="pagination">
+      {% if entries.has_previous %}
+        <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+      {% else %}
+        <li class="disabled"><a href="">&laquo;</a></li>
+      {% endif %}
+      {% for n in page_list %}
+        {% if n == entries.number %}
+          <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+        {% else %}
+          <li><a href="?page={{ n }}">{{ n }}</a></li>
+        {% endif %}
+      {% endfor %}
+      {% if entries.has_next %}
+        <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+      {% else %}
+        <li class="disabled"><a href="">&raquo;</a></li>
+      {% endif %}
+    </span>
+  </div>
+  <div class="col-md-1">
+    <span style="font-size:120%">Categories</span>
+    <ul class="list-unstyled">
+      {% for c in categories %}
+        <li style="margin-left: 5px"><a href="?category={{ c.title }}">{{ c.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 </div>
 {% endblock content %}
-{% block footer %}
-<div class='container' style='margin-bottom: 25px'>
-  <a href="mailto:agreyshi@gmail.com" class="icon-envelope-alt icon-2x"></a>
-</div>
-{% endblock footer %}

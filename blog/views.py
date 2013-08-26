@@ -8,10 +8,14 @@ def main(request):
     num_page_links = 4
 
     query = ""
+    category = ""
     if request.method == 'GET':
         query = request.GET.get('query', '')
+        category = request.GET.get('category', '')
     if query:
         entry_list = Entry.objects.all().filter(title__icontains=query).order_by('-pub_date')
+    elif category:
+        entry_list = Category.objects.get(title=category).entry_set.all().order_by('-pub_date')
     else:
         entry_list = Entry.objects.all().order_by('-pub_date')
 
@@ -20,8 +24,10 @@ def main(request):
 
     return render(request, 'blog/main.html',
                   {'entries': entries,
-                   'query': query,
                    'page_list': page_list,
+                   'query': query,
+                   'category': category,
+                   'categories': Category.objects.all(),
                   })
 
 
