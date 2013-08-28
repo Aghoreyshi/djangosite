@@ -40,19 +40,35 @@ Poll Index
   {% endif %}
   <span class="pagination">
     {% if polls.has_previous %}
-      <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+      {% if query %}
+        <li><a href="?page={{ polls.previous_page_number }}&query={{ request.GET.query }}">&laquo;</a></li>
+      {% else %}
+        <li><a href="?page={{ polls.previous_page_number }}">&laquo;</a></li>
+      {% endif %}
     {% else %}
       <li class="disabled"><a href="">&laquo;</a></li>
     {% endif %}
     {% for n in page_list %}
       {% if n == polls.number %}
-        <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+        {% if query %}
+          <li class="active"><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+        {% else %}
+          <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+        {% endif %}
       {% else %}
-        <li><a href="?page={{ n }}">{{ n }}</a></li>
+        {% if query %}
+          <li><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+        {% else %}
+          <li><a href="?page={{ n }}">{{ n }}</a></li>
+        {% endif %}
       {% endif %}
     {% endfor %}
     {% if polls.has_next %}
-      <li><a href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+        {% if query %}
+          <li><a href="?page={{ polls.next_page_number }}&query={{ request.GET.query }}">&raquo;</a></li>
+        {% else %}
+          <li><a href="?page={{ polls.next_page_number }}">&raquo;</a></li>
+        {% endif %}
     {% else %}
       <li class="disabled"><a href="">&raquo;</a></li>
     {% endif %}

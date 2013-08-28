@@ -42,19 +42,43 @@ Arash's Blog
     {% endif %}
     <span class="pagination">
       {% if entries.has_previous %}
-        <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+        {% if query %}
+          <li><a href="?page={{ entries.previous_page_number }}&query={{ request.GET.query }}">&laquo;</a></li>
+        {% elif category %}
+          <li><a href="?page={{ entries.previous_page_number }}&category={{ request.GET.category }}">&laquo;</a></li>
+        {% else %}
+          <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+        {% endif %}
       {% else %}
         <li class="disabled"><a href="">&laquo;</a></li>
       {% endif %}
       {% for n in page_list %}
         {% if n == entries.number %}
-          <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+          {% if query %}
+            <li class="active"><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+          {% elif category %}
+            <li class="active"><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+          {% else %}
+            <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+          {% endif %}
         {% else %}
-          <li><a href="?page={{ n }}">{{ n }}</a></li>
+          {% if query %}
+            <li><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+          {% elif category %}
+            <li><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+          {% else %}
+            <li><a href="?page={{ n }}">{{ n }}</a></li>
+          {% endif %}
         {% endif %}
       {% endfor %}
       {% if entries.has_next %}
-        <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+        {% if query %}
+          <li><a href="?page={{ entries.next_page_number }}&query={{ request.GET.query }}">&raquo;</a></li>
+        {% elif category %}
+          <li><a href="?page={{ entries.next_page_number }}&category={{ request.GET.category }}">&raquo;</a></li>
+        {% else %}
+          <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+        {% endif %}
       {% else %}
         <li class="disabled"><a href="">&raquo;</a></li>
       {% endif %}

@@ -2,6 +2,8 @@
 import os
 import dj_database_url
 
+from django.conf import global_settings
+
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
@@ -115,6 +117,8 @@ WSGI_APPLICATION = 'araghor.wsgi.application'
 TEMPLATE_DIRS = (
     os.path.join(PROJECT_DIR, 'templates')
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + ("django.core.context_processors.request",)
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
 
