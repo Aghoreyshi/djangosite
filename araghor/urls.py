@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^araghor/', include('araghor.foo.urls')),
     url(r'^$', 'araghor.views.home', name='home'),
     url(r'grey$', 'araghor.views.greyhome', name='greyhome'),
+    url(r'cv$', 'araghor.views.cv', name='cv'),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     #url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
