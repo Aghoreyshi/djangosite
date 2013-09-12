@@ -11,7 +11,7 @@
   {% if entry.pub_date.ctime != entry.modified_date.ctime %}
     <p><em><small class="text-info">Updated on {{ entry.modified_date }}</small></em></p>
   {% endif %}
-  <button type="button" class="btn btn-primary btn-lg" style='margin-top: 25px'>
+  <button type="button" class="btn btn-primary btn-sm" style='margin-top: 10px; margin-bottom: 20px'>
       <a href="{% url 'blog:main' %}">Blog Home</a></button>
 </div>
 {% endblock content %}

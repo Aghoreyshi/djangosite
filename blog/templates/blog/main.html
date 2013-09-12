@@ -12,16 +12,18 @@ Arash's Blog
       <input name="query" type="text" class="form-control" placeholder="Search Blog">
     {% endif %}
   </div>
-  <button type="submit" class="btn btn-default">Submit</button>
+  <button type="submit" class="btn btn-default"><span class="icon-search"></span></button>
 </form>
 {% endblock navaddons %}
 {% block content %}
 <div class="row container">
   <div class="col-md-11">
     {% if query %}
-      <h3>Entries matching <span class="text-info">"{{ query }}"</span></h1>
+      <h2><strong><span class="text-info">"{{ query }}"</span></strong></h2>
+      <legend></legend>
     {% elif category %}
-      <h3>Category: <span class='text-info'>{{ category }}</span></h1>
+      <h1><strong><em>{{ category }}</em></strong></h1>
+      <legend></legend>
     {% else %}
     {% endif %}
     {% if entries %}
@@ -30,12 +32,15 @@ Arash's Blog
           {{ entry.title }}</a></h3>
         <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
         {% if not query and not category %}
-          <p>{{ entry.body|markdown }}</p>
+          <div class="well well-lg">
+            <p>{{ entry.body|markdown }}</p>
+          </div>
         {% endif %}
       {% endfor %}
     {% else %}
       {% if query %}
-        <h3 class="text-danger">No blog entries matched your criteria.</h3>
+        <span class="icon-frown icon-3x"></span>
+        <h3 class="text-danger">No blog entries had "{{ query }}" in their titles.</h3>
       {% else %}
         <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
       {% endif %}
