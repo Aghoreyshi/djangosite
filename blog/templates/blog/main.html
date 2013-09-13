@@ -28,19 +28,21 @@ Arash's Blog
     {% endif %}
     {% if entries %}
       {% for entry in entries %}
-        <h3 class='text-primary' style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">
-          {{ entry.title }}</a></h3>
+        <h3 style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h3>
         <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
         {% if not query and not category %}
           <div class="well well-lg">
             <p>{{ entry.body|markdown }}</p>
           </div>
         {% endif %}
+        <p style="margin-bottom: 60px"><a href="{% url 'blog:detail' entry.id entry.slug %}#disqus_thread" data-disqus-identifier="{{ entry.id }}"></a>
+          {{ entry.title }}</p>
+
       {% endfor %}
     {% else %}
       {% if query %}
-        <span class="icon-frown icon-3x"></span>
         <h3 class="text-danger">No blog entry had "{{ query }}" in its title.</h3>
+        <p style="margin-top: 20px"><span class="icon-frown icon-2x"></span></p>
       {% else %}
         <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
       {% endif %}
@@ -98,4 +100,15 @@ Arash's Blog
     </ul>
   </div>
 </div>
+<script type="text/javascript">
+  var disqus_shortname = 'greyshi';
+
+  /* * * DON'T EDIT BELOW THIS LINE * * */
+  (function () {
+      var s = document.createElement('script'); s.async = true;
+      s.type = 'text/javascript';
+      s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+      (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+  }());
+</script>
 {% endblock content %}
