@@ -35,9 +35,7 @@ Arash's Blog
             <p>{{ entry.body|markdown }}</p>
           </div>
         {% endif %}
-        <p style="margin-bottom: 60px"><a href="{% url 'blog:detail' entry.id entry.slug %}#disqus_thread" data-disqus-identifier="{{ entry.id }}"></a>
-          {{ entry.title }}</p>
-
+        <p style="margin-bottom: 40px"><a href="{% url 'blog:detail' entry.id entry.slug %}#disqus_thread" data-disqus-identifier="{{ entry.id }}"></a></p>
       {% endfor %}
     {% else %}
       {% if query %}
