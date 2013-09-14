@@ -16,86 +16,88 @@ Arash's Blog
 </form>
 {% endblock navaddons %}
 {% block content %}
-<div class="row container">
-  <div class="col-md-11">
-    {% if query %}
-      <h2><strong><span class="text-info">"{{ query }}"</span></strong></h2>
-      <legend></legend>
-    {% elif category %}
-      <h1><strong><em>{{ category }}</em></strong></h1>
-      <legend></legend>
-    {% else %}
-    {% endif %}
-    {% if entries %}
-      {% for entry in entries %}
-        <h3 style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h3>
-        <p><em><small class="text-info">{{ entry.pub_date }}</small></em></p>
-        {% if not query and not category %}
-          <div class="well well-lg">
-            <p>{{ entry.body|markdown }}</p>
-          </div>
-        {% endif %}
-        <p style="margin-bottom: 40px"><a href="{% url 'blog:detail' entry.id entry.slug %}#disqus_thread" data-disqus-identifier="{{ entry.id }}"></a></p>
-      {% endfor %}
-    {% else %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-11">
       {% if query %}
-        <h3 class="text-danger">No blog entry had "{{ query }}" in its title.</h3>
-        <p style="margin-top: 20px"><span class="icon-frown icon-2x"></span></p>
+        <h2><strong><span class="text-info">"{{ query }}"</span></strong></h2>
+        <legend></legend>
+      {% elif category %}
+        <h1><strong><em>{{ category }}</em></strong></h1>
+        <legend></legend>
       {% else %}
-        <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
       {% endif %}
-    {% endif %}
-    <span class="pagination">
-      {% if entries.has_previous %}
+      {% if entries %}
+        {% for entry in entries %}
+          <h3 style='margin-top: 30px'><a href="{% url 'blog:detail' entry.id entry.slug %}">{{ entry.title }}</a></h3>
+          <p><em><small>{{ entry.pub_date }}</small></em></p>
+          {% if not query and not category %}
+            <div class="well well-lg">
+              <p>{{ entry.body|markdown }}</p>
+            </div>
+          {% endif %}
+          <p style="margin-bottom: 40px"><a href="{% url 'blog:detail' entry.id entry.slug %}#disqus_thread" data-disqus-identifier="{{ entry.id }}"></a></p>
+        {% endfor %}
+      {% else %}
         {% if query %}
-          <li><a href="?page={{ entries.previous_page_number }}&query={{ request.GET.query }}">&laquo;</a></li>
-        {% elif category %}
-          <li><a href="?page={{ entries.previous_page_number }}&category={{ request.GET.category }}">&laquo;</a></li>
+          <h3 class="text-danger">No blog entry had "{{ query }}" in its title.</h3>
+          <p style="margin-top: 20px"><span class="icon-frown icon-2x"></span></p>
         {% else %}
-          <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
+          <h3 class="text-danger">Arash hasn't written any posts yet... some blog.</h3>
         {% endif %}
-      {% else %}
-        <li class="disabled"><a href="">&laquo;</a></li>
       {% endif %}
-      {% for n in page_list %}
-        {% if n == entries.number %}
+      <span class="pagination">
+        {% if entries.has_previous %}
           {% if query %}
-            <li class="active"><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+            <li><a href="?page={{ entries.previous_page_number }}&query={{ request.GET.query }}">&laquo;</a></li>
           {% elif category %}
-            <li class="active"><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+            <li><a href="?page={{ entries.previous_page_number }}&category={{ request.GET.category }}">&laquo;</a></li>
           {% else %}
-            <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+            <li><a href="?page={{ entries.previous_page_number }}">&laquo;</a></li>
           {% endif %}
         {% else %}
-          {% if query %}
-            <li><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
-          {% elif category %}
-            <li><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+          <li class="disabled"><a href="">&laquo;</a></li>
+        {% endif %}
+        {% for n in page_list %}
+          {% if n == entries.number %}
+            {% if query %}
+              <li class="active"><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+            {% elif category %}
+              <li class="active"><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+            {% else %}
+              <li class="active"><a href="?page={{ n }}">{{ n }}</a></li>
+            {% endif %}
           {% else %}
-            <li><a href="?page={{ n }}">{{ n }}</a></li>
+            {% if query %}
+              <li><a href="?page={{ n }}&query={{ request.GET.query }}">{{ n }}</a></li>
+            {% elif category %}
+              <li><a href="?page={{ n }}&category={{ request.GET.category }}">{{ n }}</a></li>
+            {% else %}
+              <li><a href="?page={{ n }}">{{ n }}</a></li>
+            {% endif %}
           {% endif %}
-        {% endif %}
-      {% endfor %}
-      {% if entries.has_next %}
-        {% if query %}
-          <li><a href="?page={{ entries.next_page_number }}&query={{ request.GET.query }}">&raquo;</a></li>
-        {% elif category %}
-          <li><a href="?page={{ entries.next_page_number }}&category={{ request.GET.category }}">&raquo;</a></li>
+        {% endfor %}
+        {% if entries.has_next %}
+          {% if query %}
+            <li><a href="?page={{ entries.next_page_number }}&query={{ request.GET.query }}">&raquo;</a></li>
+          {% elif category %}
+            <li><a href="?page={{ entries.next_page_number }}&category={{ request.GET.category }}">&raquo;</a></li>
+          {% else %}
+            <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+          {% endif %}
         {% else %}
-          <li><a href="?page={{ entries.next_page_number }}">&raquo;</a></li>
+          <li class="disabled"><a href="">&raquo;</a></li>
         {% endif %}
-      {% else %}
-        <li class="disabled"><a href="">&raquo;</a></li>
-      {% endif %}
-    </span>
-  </div>
-  <div class="col-md-1">
-    <span style="font-size:120%">Categories</span>
-    <ul class="list-unstyled">
-      {% for c in categories %}
-        <li style="margin-left: 5px"><a href="?category={{ c.title }}">{{ c.title }}</a></li>
-      {% endfor %}
-    </ul>
+      </span>
+    </div>
+    <div class="col-md-1">
+      <span style="font-size:120%">Categories</span>
+      <ul class="list-unstyled">
+        {% for c in categories %}
+          <li style="margin-left: 5px"><a href="?category={{ c.title }}">{{ c.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 </div>
 <script type="text/javascript">
