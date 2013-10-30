@@ -35,11 +35,11 @@ class PollForm(forms.Form):
     helper = FormHelper()
     helper.form_class = 'form-horizontal'
     helper.layout = Layout(
-        Field('question', css_class='input-lg form-control', placeholder='Enter Question', style='margin-bottom: 20px'),
-        Field('choice1', css_class='form-control', placeholder='Enter Choice', style='margin-bottom: 10px'),
-        Field('choice2', css_class='form-control', placeholder='Enter Choice', style='margin-bottom: 10px'),
-        Field('choice3', css_class='form-control', placeholder='Enter Choice', style='margin-bottom: 10px'),
-        Field('choice4', css_class='form-control', placeholder='Enter Choice', style='margin-bottom: 10px'),
+        Field('question', css_class='input-lg form-control', placeholder='Enter Question'),
+        Field('choice1', css_class='form-control', placeholder='Enter Choice'),
+        Field('choice2', css_class='form-control', placeholder='Enter Choice'),
+        Field('choice3', css_class='form-control', placeholder='Enter Choice'),
+        Field('choice4', css_class='form-control', placeholder='Enter Choice'),
         FormActions(
             Submit('save_changes', 'Create', css_class="btn-primary btn-lg", style="margin-top: 10px"),
         )
