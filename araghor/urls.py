@@ -10,5 +10,7 @@ urlpatterns = patterns('',
     url(r'cv$', 'araghor.views.cv', name='cv'),
 
     url(r'^polls/', include('polls.urls', namespace='polls')),
-    url(r'^blog/', include('blog.urls', namespace='blog'))
+    url(r'^blog/', include('blog.urls', namespace='blog')),
+
+    url(r'^admin/', include(admin.site.urls)),
 )

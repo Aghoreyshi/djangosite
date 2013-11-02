@@ -1,7 +1,10 @@
-from blog.models import Entry, Category
-from pagedown.widgets import AdminPagedownWidget
+from django.contrib.sites.models import Site
+from django.contrib.auth.models import User, Group
 from django.contrib import admin
 from django import forms
+
+from blog.models import Entry, Category
+from pagedown.widgets import AdminPagedownWidget
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ['title']
@@ -33,3 +36,7 @@ class EntryAdmin(admin.ModelAdmin):
 
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Entry, EntryAdmin)
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
+admin.site.unregister(Site)
