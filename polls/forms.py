@@ -41,7 +41,7 @@ class PollForm(forms.Form):
         Field('choice3', css_class='form-control', placeholder='Enter Choice'),
         Field('choice4', css_class='form-control', placeholder='Enter Choice'),
         FormActions(
-            Submit('save_changes', 'Create', css_class="btn-primary btn-lg", style="margin-top: 10px"),
+            Submit('save_changes', 'Submit', css_class="btn-primary btn-lg", style="margin-top: 30px"),
         )
    )
 
