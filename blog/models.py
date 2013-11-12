@@ -35,6 +35,6 @@ class Entry(models.Model):
     published_recently.admin_order_field = 'pub_date'
 
     class Meta:
-        ordering = ['pub_date']
+        ordering = ['-pub_date']
         verbose_name_plural = "Entries"
 
